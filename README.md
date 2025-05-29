@@ -6,6 +6,10 @@ README.md
 
 <img src="./src/img/success.png" alt="示例图片" width="600">
 
+<img src="./src/img/success2.png" alt="示例图片" width="600">
+
+<img src="./src/img/success3.png" alt="示例图片" width="600">
+
 # 安装依赖
 
 ```bash
