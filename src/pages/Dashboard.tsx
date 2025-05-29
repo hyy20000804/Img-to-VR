@@ -2,8 +2,6 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Viewer } from 'photo-sphere-viewer'
 import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
 
-import AFrame from '../components/AFrame'
-
 import { PlusOutlined } from '@ant-design/icons'
 import { Image, Upload } from 'antd'
 import type { GetProp, UploadFile, UploadProps } from 'antd'
@@ -68,7 +66,6 @@ export default function VrUploader () {
     setFileList([])
     setSelectedFileUrl('')
     setConfirmedImageUrl('')
-
     // 销毁 Viewer 实例并清空引用
     if (viewerInstance.current) {
       viewerInstance.current.destroy()
@@ -100,13 +97,9 @@ export default function VrUploader () {
         viewerInstance.current.setPanorama(confirmedImageUrl)
       } else {
         viewerInstance.current = new Viewer({
-          container: viewerRef.current,
-          panorama: confirmedImageUrl,
-
+          container: viewerRef.current, //必---html元素信息
+          panorama: confirmedImageUrl, //必---图片路径
           description: '<p>This is a description.</p>'
-          // autorotateDelay: 2000, // 延迟启动自动旋转，单位毫秒
-          // autorotateSpeed: '1rpm', // 旋转速度，1转/分钟
-          // autorotateLat: 0 // 旋转时的纬度（俯仰角）
         })
       }
     }
@@ -115,20 +108,12 @@ export default function VrUploader () {
   return (
     <div className='p-4 cursor-pointer'>
       <div className='bg-gray-100 flex items-center justify-center w-100'>
-        {/* <AFrame /> */}
         <div className='min-w-[70%]'>
           <h2 className='text-2xl font-bold mb-4 mt-4'>
             <p>单图上传</p>
             <p>VR 生成（photo-sphere-viewer）</p>
           </h2>
           <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-4'>
-            {/* <input
-              className='cursor-pointer file:mr-3 file:py-1 file:px-3 file:border file:rounded-md file:text-sm file:bg-white hover:file:bg-gray-100'
-              type='file'
-              accept='image/*'
-              onChange={handleFileChange}
-            /> */}
-
             <Upload
               action='https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload'
               listType='picture-card'
