@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-layout-sider {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.ant-layout-sider-collapsed {
+  @apply transform -translate-x-full lg:translate-x-0;
+}
+
+.ant-menu-item {
+  @apply transition-colors duration-200;
+}
+
+.ant-statistic-title {
+  @apply text-gray-600;
+}
+
+.ant-card {
+  @apply shadow-sm hover:shadow-md transition-shadow duration-300;
+}
