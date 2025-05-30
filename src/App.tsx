@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import Login from './pages/Login'
 import Single from './pages/Single'
+import SingleTwo from './pages/SingleTwo' //AFrame
 import MultiTwo from './pages/Multi-two'
 import Layout from './components/Layout'
 import MultiOne from './pages/Multi-one'
@@ -19,16 +20,9 @@ function App () {
       <BrowserRouter>
         <Routes>
           <Route path='/login' element={<Login />} />
+
           <Route
-            path='/upload'
-            element={
-              <Layout>
-                <MultiOne />
-              </Layout>
-            }
-          />
-          <Route
-            path='/dashboard'
+            path='/single'
             element={
               <Layout>
                 <Single />
@@ -37,14 +31,30 @@ function App () {
           />
 
           <Route
-            path='/echarts'
+            path='/singleTwo'
+            element={
+              <Layout>
+                <SingleTwo />
+              </Layout>
+            }
+          />
+          <Route
+            path='/mulitOne'
+            element={
+              <Layout>
+                <MultiOne />
+              </Layout>
+            }
+          />
+          <Route
+            path='/mulitTwo'
             element={
               <Layout>
                 <MultiTwo />
               </Layout>
             }
           />
-          <Route path='/' element={<Navigate to='/dashboard\' replace />} />
+          <Route path='/' element={<Navigate to='/single\' replace />} />
         </Routes>
       </BrowserRouter>
     </ConfigProvider>

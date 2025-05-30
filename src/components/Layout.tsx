@@ -22,16 +22,18 @@ function Layout ({ children }) {
 
   //  根据路径动态匹配 Menu 选中项
   const pathToKey = {
-    '/dashboard': '1',
-    '/upload': '2',
-    '/echarts': '3'
+    '/single': '1',
+    '/singleTwo': '2',
+    '/mulitOne': '3',
+    '/mulitTwo': '4'
   }
   const selectedKey = pathToKey[location.pathname] || '1'
 
   const handleJump = e => {
-    if (e.key === '1') navigate('/dashboard')
-    else if (e.key === '2') navigate('/upload')
-    else navigate('/echarts')
+    if (e.key === '1') navigate('/single')
+    else if (e.key === '2') navigate('/singleTwo')
+    else if (e.key === '3') navigate('/mulitOne')
+    else navigate('/mulitTwo')
   }
 
   const handleLogout = () => {
@@ -67,15 +69,20 @@ function Layout ({ children }) {
             {
               key: '1',
               icon: <PictureOutlined />,
-              label: '单图VR'
+              label: '单图动态VR'
             },
             {
               key: '2',
+              icon: <PictureOutlined />,
+              label: '单图VR'
+            },
+            {
+              key: '3',
               icon: <FundProjectionScreenOutlined />,
               label: '多图立体VR'
             },
             {
-              key: '3',
+              key: '4',
               icon: <CameraOutlined />,
               label: '多图动态VR'
             }

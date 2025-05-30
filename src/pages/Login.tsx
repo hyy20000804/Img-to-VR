@@ -10,7 +10,7 @@ function Login () {
     // In a real app, you would validate credentials with your backend
     if (values.username === 'admin' && values.password === '123456') {
       message.success('Login successful!')
-      navigate('/dashboard')
+      navigate('/single')
     } else {
       message.error('Invalid credentials!')
     }
