@@ -170,7 +170,9 @@ export default function VrUploader () {
             ref={viewerRef}
           >
             {!selectedFileUrl && (
-              <p className='text-white p-4'>请上传一张比例为2:1 / 圆形图</p>
+              <p className='text-white p-4'>
+                请上传一张比例为2:1的矩形图 / 圆形图
+              </p>
             )}
           </div>
         </div>
