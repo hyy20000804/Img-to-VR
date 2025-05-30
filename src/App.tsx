@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import Login from './pages/Login'
 import Single from './pages/Single'
-import Echarts from './pages/Echarts'
+import MultiTwo from './pages/Multi-two'
 import Layout from './components/Layout'
-import Upload from './pages/Upload'
+import MultiOne from './pages/Multi-one'
 
 function App () {
   return (
@@ -23,7 +23,7 @@ function App () {
             path='/upload'
             element={
               <Layout>
-                <Upload />
+                <MultiOne />
               </Layout>
             }
           />
@@ -40,7 +40,7 @@ function App () {
             path='/echarts'
             element={
               <Layout>
-                <Echarts />
+                <MultiTwo />
               </Layout>
             }
           />
