@@ -113,45 +113,38 @@ export default function SixImageVrThree () {
 
   return (
     <div className='min-w-[100%]'>
-      {/* <h2 className='text-2xl font-bold mt-4 mb-4'>
-        <p>六图上传</p>
-        <p>全景动态生成（Three.js）</p>
-      </h2> */}
-
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
-        {faceOrder.map(face => (
-          <div key={face} className='flex flex-col'>
-            <label className='mb-1 capitalize font-medium text-sm text-gray-700'>
-              {faceLabels[face]}
-            </label>
-            <input
-              type='file'
-              accept='image/*'
-              onChange={e => handleFileChange(e, face)}
-              className='cursor-pointer file:mr-3 file:py-1 file:px-3 file:border file:rounded-md file:text-sm file:bg-white hover:file:bg-gray-100'
-            />
-            {/* 展示临时图片信息 */}
-            {/* {images[face] && (
-              <img
-                src={images[face]!}
-                alt={`${faceLabels[face]} 预览`}
-                className='mt-2 w-24 h-16 object-cover rounded border'
+      <div className='flex justify-between'>
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+          {faceOrder.map(face => (
+            <div key={face} className='flex flex-col'>
+              <label className='mb-1 capitalize font-medium text-sm text-gray-700'>
+                {faceLabels[face]}
+              </label>
+              <input
+                type='file'
+                accept='image/*'
+                onChange={e => handleFileChange(e, face)}
+                className='cursor-pointer file:mr-3 file:py-1 file:px-3 file:border file:rounded-md file:text-sm file:bg-white hover:file:bg-gray-100'
               />
-            )} */}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+
+        <div className='flex justify-center items-center'>
+          <button
+            onClick={initScene}
+            disabled={!allImagesUploaded}
+            className={`px-4 py-2 rounded-md text-white mt-8 ${
+              allImagesUploaded
+                ? 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-gray-400 cursor-not-allowed'
+            }`}
+          >
+            生成动态全景图
+          </button>
+        </div>
       </div>
-      <button
-        onClick={initScene}
-        disabled={!allImagesUploaded}
-        className={`px-4 py-2 rounded-md text-white mt-8 ${
-          allImagesUploaded
-            ? 'bg-blue-600 hover:bg-blue-700'
-            : 'bg-gray-400 cursor-not-allowed'
-        }`}
-      >
-        生成动态全景图
-      </button>
+
       <div
         className='h-[55vh] w-full bg-black mt-6 rounded overflow-hidden mb-6 rounded-3xl'
         ref={containerRef}

@@ -39,7 +39,7 @@ export default function VRCube () {
     <div className='p-6'>
       <h1 className='text-2xl font-bold mb-4'>上传 6 张立方体全景图</h1>
 
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-6'>
+      <div className='flex justify-between mb-6'>
         {(Object.keys(faceLabels) as Face[]).map(face => (
           <div key={face}>
             <label className='block mb-1 font-medium'>{faceLabels[face]}</label>

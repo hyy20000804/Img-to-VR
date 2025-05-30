@@ -1,6 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Viewer } from 'photo-sphere-viewer'
-import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
+
+import { Viewer } from '@photo-sphere-viewer/core'
+
+import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin'
+
+import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin' //虚拟游览组件
 
 import { PlusOutlined } from '@ant-design/icons'
 import { Image, Upload, Button } from 'antd'
@@ -73,21 +77,20 @@ export default function VrUploader () {
     }
   }
 
-  const [isRetote, setIsRetote] = useState(false) // 是否旋转
+  const [isRotating, setIsRotating] = useState(false) // 是否旋转
 
-  const handleRetote = () => {
-    setIsRetote(prev => {
-      const newState = !prev
-
+  const handleRotate = () => {
+    setIsRotating(prev => {
+      const next = !prev
       if (viewerInstance.current) {
-        if (newState) {
-          viewerInstance.current.startAutorotate()
+        const autorotate = viewerInstance.current.getPlugin(AutorotatePlugin)
+        if (next) {
+          autorotate.start()
         } else {
-          viewerInstance.current.stopAutorotate()
+          autorotate.stop()
         }
       }
-
-      return newState
+      return next
     })
   }
 
@@ -97,9 +100,9 @@ export default function VrUploader () {
         viewerInstance.current.setPanorama(confirmedImageUrl)
       } else {
         viewerInstance.current = new Viewer({
-          container: viewerRef.current, //必---html元素信息
-          panorama: confirmedImageUrl, //必---图片路径
-          description: '<p>This is a description.</p>'
+          container: viewerRef.current,
+          panorama: confirmedImageUrl,
+          plugins: [[AutorotatePlugin, { autostart: false }]]
         })
       }
     }
@@ -107,19 +110,9 @@ export default function VrUploader () {
 
   return (
     <div className='p-4 cursor-pointer'>
-      <div className='flex items-center justify-center w-100'>
+      <div className='flex items-center justify-center w-100 min-w-full'>
         <div className='min-w-[100%]'>
-          {/* <h2 className='text-2xl font-bold mb-4 mt-4'>
-            <p>单图上传</p>
-            <p>VR 生成（photo-sphere-viewer）</p>
-          </h2> */}
-          <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 '>
-            <style>
-              {`:where(.css-dev-only-do-not-override-5uvb3z).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error{
-          border-color
-: #2b90d4
- !important;}`}
-            </style>
+          <div className='flex justify-between'>
             <Upload
               listType='picture-card'
               fileList={fileList}
@@ -144,7 +137,7 @@ export default function VrUploader () {
               <button
                 onClick={handleConfirm}
                 disabled={!selectedFileUrl}
-                className={`px-4 py-2 rounded-md text-white mx-4
+                className={`px-4 py-2 rounded-md text-white mr-4
  ${
    selectedFileUrl
      ? 'bg-blue-600 hover:bg-blue-700'
@@ -156,20 +149,14 @@ export default function VrUploader () {
 
               {selectedFileUrl && (
                 <button
-                  onClick={handleRetote}
-                  className={`px-4 py-2 rounded-md text-white bg-green-600 hover:bg-green-700 mx-4`}
+                  onClick={handleRotate}
+                  className={`px-4 py-2 rounded-md text-white bg-green-600 hover:bg-green-700 mr-4
+`}
                 >
-                  {!isRetote ? '开始巡检' : '停止巡检'}
+                  {!isRotating ? '开始巡检' : '停止巡检'}
                 </button>
               )}
-            </div>
-            {/* <button
-              onClick={handleRetote}
-              className={`px-4 py-2 rounded-md text-white bg-green-600 hover:bg-green-700`}
-            >
-              {!isRetote ? '开始巡检' : '停止巡检'}
-            </button> */}
-            <div className='flex items-center justify-center'>
+
               <button
                 onClick={handleCancel}
                 className={`px-4 py-2 rounded-md text-white bg-red-600 hover:bg-red-700`}
@@ -177,12 +164,6 @@ export default function VrUploader () {
                 重置图片
               </button>
             </div>
-          </div>
-
-          <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-4'>
-            {/* 按钮区域 */}
-
-            <div className='flex w-full justify-between'></div>
           </div>
 
           {/* VR区域 */}
