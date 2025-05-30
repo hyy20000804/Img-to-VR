@@ -20,7 +20,7 @@ function Login () {
     <div className='min-h-screen bg-gray-100 flex items-center justify-center p-4'>
       <Card className='w-full max-w-md'>
         <div className='text-center mb-8'>
-          <h1 className='text-2xl font-bold text-gray-800'>Admin Dashboard</h1>
+          <h1 className='text-2xl font-bold text-gray-800'>Admin Single</h1>
           <p className='text-gray-600'>Please login to continue</p>
         </div>
         <Form

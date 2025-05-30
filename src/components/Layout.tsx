@@ -3,9 +3,9 @@ import { Layout as AntLayout, Menu, Button, theme, Dropdown } from 'antd'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  DashboardOutlined,
-  UserOutlined,
-  SettingOutlined,
+  PictureOutlined,
+  FundProjectionScreenOutlined,
+  CameraOutlined,
   LogoutOutlined
 } from '@ant-design/icons'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -66,18 +66,18 @@ function Layout ({ children }) {
           items={[
             {
               key: '1',
-              icon: <DashboardOutlined />,
+              icon: <PictureOutlined />,
               label: '单图VR'
             },
             {
               key: '2',
-              icon: <UserOutlined />,
-              label: '多图VR'
+              icon: <FundProjectionScreenOutlined />,
+              label: '多图立体VR'
             },
             {
               key: '3',
-              icon: <SettingOutlined />,
-              label: '多图全景'
+              icon: <CameraOutlined />,
+              label: '多图动态VR'
             }
           ]}
         />
@@ -97,18 +97,22 @@ function Layout ({ children }) {
             className='text-xl w-16 h-16'
           />
           <Dropdown menu={{ items: userMenuItems }} placement='bottomRight'>
-            <Button type='text' icon={<UserOutlined />} className='mr-4'>
+            <Button
+              type='text'
+              icon={<FundProjectionScreenOutlined />}
+              className='mr-4'
+            >
               Admin
             </Button>
           </Dropdown>
         </Header>
-        <Content className='mt-16 mx-4 my-4'>
+        <Content className='mt-16 '>
           <div
             style={{
               background: colorBgContainer,
               borderRadius: borderRadiusLG
             }}
-            className='p-6 min-h-[calc(100vh-120px)]'
+            className='p-6 min-h-[calc(100vh)]'
           >
             {children}
           </div>

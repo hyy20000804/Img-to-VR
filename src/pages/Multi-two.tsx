@@ -27,7 +27,7 @@ export default function VrUploader () {
   return (
     <div className='p-4 cursor-pointer'>
       {/* 多图生成 */}
-      <div className='bg-gray-100 flex items-center justify-center'>
+      <div className='flex items-center justify-center'>
         <SixComponentsStatic />
       </div>
     </div>

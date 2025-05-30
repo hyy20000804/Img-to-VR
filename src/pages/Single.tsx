@@ -3,7 +3,7 @@ import { Viewer } from 'photo-sphere-viewer'
 import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
 
 import { PlusOutlined } from '@ant-design/icons'
-import { Image, Upload } from 'antd'
+import { Image, Upload, Button } from 'antd'
 import type { GetProp, UploadFile, UploadProps } from 'antd'
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0]
@@ -107,13 +107,19 @@ export default function VrUploader () {
 
   return (
     <div className='p-4 cursor-pointer'>
-      <div className='bg-gray-100 flex items-center justify-center w-100'>
-        <div className='min-w-[70%]'>
-          <h2 className='text-2xl font-bold mb-4 mt-4'>
+      <div className='flex items-center justify-center w-100'>
+        <div className='min-w-[100%]'>
+          {/* <h2 className='text-2xl font-bold mb-4 mt-4'>
             <p>单图上传</p>
             <p>VR 生成（photo-sphere-viewer）</p>
-          </h2>
-          <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-4'>
+          </h2> */}
+          <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 '>
+            <style>
+              {`:where(.css-dev-only-do-not-override-5uvb3z).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error{
+          border-color
+: #2b90d4
+ !important;}`}
+            </style>
             <Upload
               action='https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload'
               listType='picture-card'
@@ -134,43 +140,59 @@ export default function VrUploader () {
                 src={previewImage}
               />
             )}
-          </div>
+            <div className='flex items-center justify-center'>
+              <button
+                onClick={handleConfirm}
+                disabled={!selectedFileUrl}
+                className={`px-4 py-2 rounded-md text-white mx-4
+ ${
+   selectedFileUrl
+     ? 'bg-blue-600 hover:bg-blue-700'
+     : 'bg-gray-400 cursor-not-allowed'
+ }`}
+              >
+                生成 VR
+              </button>
 
-          {/* 按钮区域 */}
-          <div className='flex w-full justify-between'>
-            <button
-              onClick={handleConfirm}
-              disabled={!selectedFileUrl}
-              className={`px-4 py-2 rounded-md text-white ${
-                selectedFileUrl
-                  ? 'bg-blue-600 hover:bg-blue-700'
-                  : 'bg-gray-400 cursor-not-allowed'
-              }`}
-            >
-              生成 VR
-            </button>
-
-            <button
+              {selectedFileUrl && (
+                <button
+                  onClick={handleRetote}
+                  className={`px-4 py-2 rounded-md text-white bg-green-600 hover:bg-green-700 mx-4`}
+                >
+                  {!isRetote ? '开始巡检' : '停止巡检'}
+                </button>
+              )}
+            </div>
+            {/* <button
               onClick={handleRetote}
               className={`px-4 py-2 rounded-md text-white bg-green-600 hover:bg-green-700`}
             >
               {!isRetote ? '开始巡检' : '停止巡检'}
-            </button>
-            <button
-              onClick={handleCancel}
-              className={`px-4 py-2 rounded-md text-white bg-red-600 hover:bg-red-700`}
-            >
-              重置图片
-            </button>
+            </button> */}
+            <div className='flex items-center justify-center'>
+              <button
+                onClick={handleCancel}
+                className={`px-4 py-2 rounded-md text-white bg-red-600 hover:bg-red-700`}
+              >
+                重置图片
+              </button>
+            </div>
+          </div>
+
+          <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-4'>
+            {/* 按钮区域 */}
+
+            <div className='flex w-full justify-between'></div>
           </div>
 
           {/* VR区域 */}
           <div
-            className='h-[50vh] w-full bg-black mt-6 rounded overflow-hidden mb-6'
+            className='h-[65vh] w-full bg-black
+ mt-6 rounded overflow-hidden mb-6 rounded-3xl'
             ref={viewerRef}
           >
             {!selectedFileUrl && (
-              <p className='text-white p-4'>
+              <p className='text-white p-4 '>
                 请上传一张比例为2:1的矩形图 / 圆形图
               </p>
             )}

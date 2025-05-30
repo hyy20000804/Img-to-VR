@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
+import Single from './pages/Single'
 import Echarts from './pages/Echarts'
 import Layout from './components/Layout'
 import Upload from './pages/Upload'
@@ -31,7 +31,7 @@ function App () {
             path='/dashboard'
             element={
               <Layout>
-                <Dashboard />
+                <Single />
               </Layout>
             }
           />

@@ -14,6 +14,7 @@
     "aframe": "^1.7.1",
     "antd": "^5.15.1",
     "lucide-react": "^0.344.0",
+    "marzipano": "^0.10.2",
     "photo-sphere-viewer": "^4.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -112,11 +112,11 @@ export default function SixImageVrThree () {
   }, [])
 
   return (
-    <div>
-      <h2 className='text-2xl font-bold mt-4 mb-4'>
+    <div className='min-w-[100%]'>
+      {/* <h2 className='text-2xl font-bold mt-4 mb-4'>
         <p>六图上传</p>
         <p>全景动态生成（Three.js）</p>
-      </h2>
+      </h2> */}
 
       <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
         {faceOrder.map(face => (
@@ -150,14 +150,14 @@ export default function SixImageVrThree () {
             : 'bg-gray-400 cursor-not-allowed'
         }`}
       >
-        生成全景图
+        生成动态全景图
       </button>
       <div
-        className='h-[50vh] w-full bg-black mt-6 rounded overflow-hidden mb-6'
+        className='h-[55vh] w-full bg-black mt-6 rounded overflow-hidden mb-6 rounded-3xl'
         ref={containerRef}
       >
         {!allImagesUploaded && (
-          <p className='text-white p-4'>请上传全部 6 张图以生成 VR 图</p>
+          <p className='text-white p-4'>请上传全部 6 张图</p>
         )}
       </div>
     </div>
