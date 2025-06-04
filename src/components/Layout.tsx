@@ -69,7 +69,7 @@ function Layout ({ children }) {
             {
               key: '1',
               icon: <PictureOutlined />,
-              label: '单图动态VR'
+              label: '多图动态VR'
             },
             {
               key: '2',
